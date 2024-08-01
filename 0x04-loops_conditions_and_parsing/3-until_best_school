@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# prints a string 10 times using until
+counter=1
+text="Best School"
+until [ $counter -eq 10 ]; do
+	echo "$text"
+	((counter++))
+done
