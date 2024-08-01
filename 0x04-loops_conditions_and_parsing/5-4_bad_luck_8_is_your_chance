@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Prints "Bad luck" on the 4th iteration and "Good luck" on the 8th
+counter=1
+text="Best School"
+while [ $counter -le 10 ]; do
+	if [ $counter -eq 4 ]; then
+		echo "bad luck"
+		((counter++))
+	elif [ $counter -eq 8 ]; then
+		echo "good luck"
+		((counter++))
+	else
+		echo "$text"
+	((counter++))
+fi
+done
