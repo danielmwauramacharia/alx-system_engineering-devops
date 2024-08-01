@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Bash script to group and count occurrences of IP and HTTP status codes from Apache log files
+LOG_FILE="apache-access.log"
+awk '
+{
+    # Extract IP and HTTP status code
+    ip = $1
+    http_code = $9
+    
+    # Concatenate IP and HTTP status code to use as key
+    key = ip " " http_code
+    
+    # Count occurrences of each key
+    count[key]++
+}
+END {
+    # Print the occurrences in the format OCCURENCE_NUMBER IP HTTP_CODE
+    for (key in count) {
+        print count[key], key
+    }
+}' "$LOG_FILE" | sort -nr
+
