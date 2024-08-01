@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bash script to display formatted information from /etc/passwd
+# Bash script to display formatted information from /etc/passwd telling a story
 IFS=":"
 while read -r username passwd uid gid gecos homedir shell; do
 	: "$gecos"
