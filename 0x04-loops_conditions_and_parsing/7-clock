@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# creating a clock
+Hour=0
+while [ $Hour -le 12 ]; do
+	echo "Hour: $Hour"
+	minute=1
+	while [ $minute -lt 60 ]; do
+		echo "$minute"
+		((minute++))
+	done
+	((Hour++))
+done
