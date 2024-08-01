@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 # Displays all files in the directory, file name start after "-" character on the file
 for file in *; do
-	if [[ -f "$file" && "$file" == *-* ]]; then
-		new_name="${file#*-}"
-		echo "$new_name"
+	if [[ -f "$file" ]]; then
+		if [[ "$file" == *-* ]]; then
+			new_name="${file#*-}"
+			echo "$new_name"
+		else
+			echo "$file"
+		fi
 	fi
 done
