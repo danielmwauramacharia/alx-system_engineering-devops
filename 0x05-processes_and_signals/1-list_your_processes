@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Prints the details of the running processes
+top
+
