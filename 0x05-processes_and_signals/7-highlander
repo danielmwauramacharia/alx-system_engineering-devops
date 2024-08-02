@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Display a text indefinate times
+trap 'echo "I am invincible!!!"' 15
+value=1
+while [ $value -eq 1 ]; do
+	echo "To infinity and beyond"
+	sleep 2
+done
