@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Prints the details of the running processes
-ps -ef
+ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command
 
