@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Prints the titles of the first 10
-hot posts listed for a given subreddit.
+Prints the titles of the first 10 hot posts
+listed for a given subreddit.
 """
 
 from requests import get
@@ -11,7 +11,7 @@ def top_ten(subreddit):
     """
     Queries the Reddit API and prints the titles of the first
     10 hot posts listed for a given subreddit. If the subreddit
-    is invalid, prints None.
+    is invalid or if there's an error, prints None.
     """
     if not isinstance(subreddit, str) or subreddit is None:
         print("None")
@@ -25,9 +25,12 @@ def top_ten(subreddit):
         response = get(url, headers=user_agent,
                        params=params, allow_redirects=False)
 
-        if response.status_code == 200:
+        # Check if the response content-type is JSON
+        if response.headers.get('Content-Type') == 'application/json; charset=utf-8' and response.status_code == 200:
             results = response.json()
             posts = results.get('data', {}).get('children', [])
+
+            # If there are posts, print titles
             if posts:
                 for post in posts:
                     print(post.get('data', {}).get('title', ""))
