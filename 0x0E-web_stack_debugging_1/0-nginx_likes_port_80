@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Path to the Nginx default site configuration file
+CONFIG_FILE="/etc/nginx/sites-enabled/default"
+
+# Check if the "listen 80 default_server;" line is present and correctly configured
+if ! grep -q "listen 80 default_server;" "$CONFIG_FILE"; then
+    echo "Error: 'listen 80 default_server;' is missing or misconfigured in $CONFIG_FILE"
+    
+    # Backup the original configuration file
+    sudo cp "$CONFIG_FILE" "$CONFIG_FILE.bak"
+    
+    # Update the configuration to bind port 80 to all IPv4 addresses
+    echo "Updating the configuration to bind port 80 to all IPv4 addresses..."
+    sudo awk '/^server {/,/^listen \[::\]:80 default_server;/ { 
+        if ($0 ~ /^ *listen [[:digit:]]+ default_server;/) 
+            print "        listen 80 default_server;"; 
+        else 
+            print; 
+    } 1' "$CONFIG_FILE.bak" > "$CONFIG_FILE"
+    
+    # Reload Nginx to apply the changes
+    sudo systemctl reload nginx
+else
+    echo "'listen 80 default_server;' is correctly configured in $CONFIG_FILE"
+fi
+
