@@ -27,7 +27,8 @@ def top_ten(subreddit):
 
         # Check if the response content-type is JSON
         if response.headers.get('Content-Type') == \
-                'application/json; charset=utf-8' and response.status_code == 200:
+                'application/json; charset=utf-8' and \
+        response.status_code == 200:
             results = response.json()
             posts = results.get('data', {}).get('children', [])
 
