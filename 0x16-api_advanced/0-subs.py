@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Query API module
+"""
 import requests
 
 
