@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 """
-Using Reddit's API to retrieve titles of all hot posts for a subreddit recursively.
+Using Reddit's API to retrieve titles of all hot posts
+for a subreddit recursively.
+
 """
 import requests
 
 
 def recurse(subreddit, hot_list=[], after=None):
     """
-    Returns a list containing the titles of all hot articles for a given subreddit.
+    Returns a list containing the titles
+    of all hot articles for a given subreddit.
     If no results are found for the given subreddit, returns None.
     """
     user_agent = {'User-Agent': 'api_advanced-project'}
