@@ -8,4 +8,12 @@ exec { 'replace_line':
   path      => ['/bin', '/usr/bin'],
   unless    => "grep -q 'phpp' ${file_to_edit}",
   logoutput => true,  # Log the output for debugging purposes
+  notify    => Service['apache2'],  # Notify Apache service to restart if file changes
+}
+
+# Restart Apache to apply changes
+service { 'apache2':
+  ensure  => running,
+  enable  => true,
+  require => Exec['replace_line'],
 }
