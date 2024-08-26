@@ -26,7 +26,8 @@ def top_ten(subreddit):
                        params=params, allow_redirects=False)
 
         # Check if the response content-type is JSON
-        if response.headers.get('Content-Type') == 'application/json; charset=utf-8' and response.status_code == 200:
+        if response.headers.get('Content-Type') == \
+                'application/json; charset=utf-8' and response.status_code == 200:
             results = response.json()
             posts = results.get('data', {}).get('children', [])
 
