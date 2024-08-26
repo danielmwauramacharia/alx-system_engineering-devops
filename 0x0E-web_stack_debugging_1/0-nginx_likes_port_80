@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#Nginx port 80
 # Path to the Nginx default site configuration file
 CONFIG_FILE="/etc/nginx/sites-enabled/default"
 
