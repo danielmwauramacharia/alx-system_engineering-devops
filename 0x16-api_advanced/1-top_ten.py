@@ -35,7 +35,3 @@ def top_ten(subreddit):
             print("None")
     except Exception:
         print("None")
-
-
-top_ten("python")  # Should print the titles of the first 10 hot posts in r/python
-top_ten("nonexistentsubreddit")  # Should print "None"
