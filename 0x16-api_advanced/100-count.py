@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Reddit API - Count occurrences of specified words in hot posts."""
 
-import requests
 import re
+import requests
 from collections import defaultdict
 
 
