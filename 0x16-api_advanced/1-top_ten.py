@@ -1,32 +1,39 @@
 #!/usr/bin/python3
 """
-prints the titles of the first 10 hot posts listed for a given subreddit
+Prints the titles of the first 10
+hot posts listed for a given subreddit.
 """
-import sys
+
 from requests import get
 
 
 def top_ten(subreddit):
     """
-    prints the titles of the first
-    10 hot posts listed for a given subreddit
+    Queries the Reddit API and prints the titles of the first
+    10 hot posts listed for a given subreddit. If the subreddit
+    is invalid, prints None.
     """
-
-    if subreddit is None or not isinstance(subreddit, str):
+    if not isinstance(subreddit, str) or subreddit is None:
         print("None")
+        return
 
-    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+    user_agent = {'User-Agent': 'api_advanced-project'}
     params = {'limit': 10}
-    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
-
-    response = get(url, headers=user_agent, params=params)
-    results = response.json()
+    url = f'https://www.reddit.com/r/{subreddit}/hot/.json'
 
     try:
-        data = results.get('data').get('children')
+        response = get(url, headers=user_agent,
+                       params=params, allow_redirects=False)
 
-        for i in data:
-            print(i.get('data').get('title'))
-
+        if response.status_code == 200:
+            results = response.json()
+            posts = results.get('data', {}).get('children', [])
+            if posts:
+                for post in posts:
+                    print(post.get('data', {}).get('title', ""))
+            else:
+                print("None")
+        else:
+            print("None")
     except Exception:
         print("None")
