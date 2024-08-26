@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # Path to the Nginx default site configuration file
 CONFIG_FILE="/etc/nginx/sites-enabled/default"
